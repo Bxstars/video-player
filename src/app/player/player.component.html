@@ -1,0 +1,103 @@
+<div class="card">
+  <mat-card>
+    <mat-card-content>
+      <div class="video_wrapper">
+        <video
+          class="video"
+          id="playVideo"
+          [class.video--big]="isBig"
+          preload="auto"
+        >
+          <source src="assets/video/video.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="controls__bar">
+        <span class="controls__bar__player">
+          <button
+            mat-icon-button
+            class="control__bar__player__voloff"
+            (click)="mute()"
+            title="Mute"
+          >
+            <mat-icon class="control__bar__player__icon"> volume_off </mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            class="control__bar__player__replay10"
+            title="Retroceder"
+          >
+            <mat-icon class="control__bar__player__icon"> replay_10 </mat-icon>
+          </button>
+          @if (status === true || videoEnd === true) {
+            <button
+              mat-icon-button
+              class="control__bar__player__play"
+              (click)="playPause()"
+              title="Play"
+            >
+              <mat-icon class="control__bar__player__icon">
+                play_arrow
+              </mat-icon>
+            </button>
+          }
+          @if (status === false) {
+            <button
+              mat-icon-button
+              class="control__bar__player__pause"
+              (click)="playPause()"
+              title="Pause"
+            >
+              <mat-icon class="control__bar__player__icon"> pause </mat-icon>
+            </button>
+          }
+          <button
+            mat-icon-button
+            class="control__bar__player__forward10"
+            title="Avançar"
+          >
+            <mat-icon class=""> forward_10 </mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            class="control__bar__player__fastforward"
+            (click)="forward()"
+            title="Speed 2X"
+          >
+            <mat-icon class="control__bar__player__icon">
+              fast_forward
+            </mat-icon>
+          </button>
+
+          <div class="mode">
+            <button
+              mat-icon-button
+              class="mode__lamp"
+              (click)="darkOrLight($event)"
+            >
+              @if (modeDark === false) {
+                <mat-icon class="mode__lamp--light" title="Light Mode">
+                  tips_and_updates
+                </mat-icon>
+              }
+              @if (modeDark === true) {
+                <mat-icon class="mode__lamp--dark" title="Dark Mode">
+                  lightbulb_outline
+                </mat-icon>
+              }
+            </button>
+            <button
+              mat-icon-button
+              class="controls__bar__screen"
+              (click)="toggleSize()"
+              [title]="isBig ? 'Small' : 'Big'"
+            >
+              <mat-icon class="controls__bar__screen__icon">
+                {{ isBig ? "close_fullscreen" : "open_in_full" }}
+              </mat-icon>
+            </button>
+          </div>
+        </span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #161424 no-repeat
+}
+
+* {
+  padding:0;
+  margin:0;
+  vertical-align:baseline;
+  list-style:none;
+  border:0
+}
+
+:root {
+  --color-player: #000000;
+  --color-text: #000;
+  --color-mode: #7157bd;
+  --color-bg-card: #ffffffa4;
+}
+
+.dark-mode:root {
+  --color-player: #fdfdfdb4;
+  --color-text: #fff;
+  --color-mode: #54428a;
+  --color-bg-card: rgba(0, 0, 0, 0.363);
+}
+
+.mat-card-header .mat-card-title {
+  font-size: 24px;
+}
+
