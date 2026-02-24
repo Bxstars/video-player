@@ -1,60 +1,83 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
-    selector: 'app-player',
-    templateUrl: './player.component.html',
-    styleUrls: ['./player.component.css'],
-    standalone: false
+  selector: 'app-player',
+  templateUrl: './player.component.html',
+  styleUrls: ['./player.component.css'],
+  standalone: false,
 })
 export class PlayerComponent implements AfterViewInit {
-  myVideo: any;
-  status: boolean = true;
-  modeDark: boolean = false;
-  videoEnd: boolean = true;
-  isBig: boolean = false;
+  @ViewChild('videoPlayer') videoRef!: ElementRef<HTMLVideoElement>;
 
-  constructor() {}
+  isPlaying: boolean = false;
+  isMuted: boolean = false;
+  isDarkMode: boolean = false;
+  isBig: boolean = false;
+  isLoading: boolean = true;
+  isEnded: boolean = false;
 
   ngAfterViewInit(): void {
-    this.myVideo = document.getElementById(
-      'playVideo'
-    ) as HTMLVideoElement | null;
-    this.setType();
+    const video = this.videoRef.nativeElement;
+
+    video.onloadeddata = () => {
+      this.isLoading = false;
+    };
   }
 
-  setType() {
-    this.myVideo as HTMLVideoElement;
+  togglePlay() {
+    const video = this.videoRef.nativeElement;
+
+    console.log('togglePlay called. Current state:', {
+      paused: video.paused,
+      currentTime: video.currentTime,
+      isPlaying: this.isPlaying,
+      isEnded: this.isEnded,
+    });
+
+    if (video.paused) {
+      video.play();
+      this.isPlaying = true;
+      this.isEnded = false;
+    } else {
+      video.pause();
+      this.isPlaying = false;
+    }
   }
 
-  getDuration() {
-    console.log(this.myVideo.duration);
-    console.log(this.myVideo.currentTime);
-    this.videoEnd = this.myVideo.ended;
+  rewind10(): void {
+    const video = this.videoRef?.nativeElement;
+    if (!video) return;
+
+    video.currentTime = Math.max(video.currentTime - 10, 0);
   }
 
+  forward10(): void {
+    const video = this.videoRef?.nativeElement;
+    if (!video) return;
+
+    video.currentTime = Math.min(
+      video.currentTime + 10,
+      video.duration || video.currentTime + 10,
+    );
+  }
+
+  forward() {
+    const video = this.videoRef.nativeElement;
+    video.playbackRate = video.playbackRate === 1 ? 2 : 1;
+  }
+
+  toggleMute() {
+    const video = this.videoRef.nativeElement;
+    video.muted = !video.muted;
+    this.isMuted = video.muted;
+  }
 
   toggleSize() {
     this.isBig = !this.isBig;
   }
 
-  playPause() {
-    this.getDuration();
-    if (this.myVideo != null) {
-      this.myVideo.paused ? this.myVideo.play() : this.myVideo?.pause();
-      this.status = this.myVideo.paused;
-    }
-  }
-
-  forward() {
-    this.myVideo.playbackRate = 2.0;
-  }
-
-  mute() {
-    this.myVideo.muted = !this.myVideo.muted;
-  }
-
-  darkOrLight(event: any) {
-    const html = document.querySelector('html') as HTMLElement;
-    this.modeDark = html.classList.toggle('dark-mode');
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    document.documentElement.classList.toggle('dark-mode');
   }
 }
