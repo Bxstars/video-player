@@ -1,7 +1,6 @@
 <div class="player-container">
   <mat-card>
     <mat-card-content>
-      
       <!-- Video -->
       <div class="video_wrapper">
         <video
@@ -17,6 +16,30 @@
 
       <!-- Overlay -->
       <div class="controls-overlay">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+          <span class="time">
+            {{ formatTime(currentTime) }}
+          </span>
+
+          <div
+            #progressBar
+            class="progress"
+            (click)="onProgressBarClick($event)"
+            (mousedown)="startDrag()"
+            (mousemove)="drag($event)"
+            (mouseup)="stopDrag()"
+            (mouseleave)="stopDrag()"
+          >
+            <div class="progress__filled" [style.width.%]="progress"></div>
+
+            <div class="progress__thumb" [style.left.%]="progress"></div>
+          </div>
+
+          <span class="time">
+            {{ formatTime(duration) }}
+          </span>
+        </div>
 
         <!-- Controls -->
         <div class="controls__bar">

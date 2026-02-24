@@ -16,11 +16,32 @@ export class PlayerComponent implements AfterViewInit {
   isLoading: boolean = true;
   isEnded: boolean = false;
 
+  currentTime: number = 0;
+  duration: number = 0;
+  progress: number = 0;
+  isDragging: boolean = false;
+
   ngAfterViewInit(): void {
     const video = this.videoRef.nativeElement;
 
     video.onloadeddata = () => {
       this.isLoading = false;
+    };
+
+    video.onended = () => {
+      this.isEnded = true;
+      this.isPlaying = false;
+    };
+
+    video.onloadedmetadata = () => {
+      this.duration = video.duration;
+    };
+
+    video.ontimeupdate = () => {
+      if (!this.isDragging) {
+        this.currentTime = video.currentTime;
+        this.progress = (video.currentTime / video.duration) * 100;
+      }
     };
   }
 
@@ -79,5 +100,60 @@ export class PlayerComponent implements AfterViewInit {
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
     document.documentElement.classList.toggle('dark-mode');
+  }
+
+  onProgressBarClick(event: MouseEvent) {
+    const video = this.videoRef.nativeElement;
+    const bar = event.currentTarget as HTMLElement;
+
+    if (!video.duration) return;
+
+    const percent = this.calculateProgress(event, bar);
+    const newTime = percent * video.duration;
+
+    this.progress = percent * 100;
+    this.currentTime = newTime;
+    video.currentTime = newTime;
+  }
+
+  startDrag(): void {
+    this.isDragging = true;
+  }
+
+  drag(event: MouseEvent): void {
+    if (!this.isDragging) return;
+
+    const video = this.videoRef.nativeElement;
+    const bar = (event.target as HTMLElement).closest(
+      '.progress',
+    ) as HTMLElement;
+
+    if (!bar || !video.duration) return;
+
+    const percent = this.calculateProgress(event, bar);
+
+    const newTime = percent * video.duration;
+
+    this.progress = percent * 100;
+    this.currentTime = newTime;
+    video.currentTime = newTime;
+  }
+
+  private calculateProgress(event: MouseEvent, bar: HTMLElement): number {
+    const rect = bar.getBoundingClientRect();
+    let percent = (event.clientX - rect.left) / rect.width;
+
+    percent = Math.max(0, Math.min(1, percent));
+    return percent;
+  }
+
+  stopDrag(): void {
+    this.isDragging = false;
+  }
+
+  formatTime(time: number): string {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
 }
