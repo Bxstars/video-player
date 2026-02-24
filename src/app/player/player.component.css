@@ -115,6 +115,60 @@ mat-card {
   color: var(--color-mode);
 }
 
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.time {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  color: var(--color-text);
+  opacity: 0.8;
+  text-align: center;
+}
+
+.progress {
+  position: relative;
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: height 0.2s ease;
+}
+
+.progress:hover {
+  height: 8px;
+}
+
+.progress__filled {
+  height: 100%;
+  background: var(--color-mode);
+  border-radius: 999px;
+  transition: width 0.15s linear;
+}
+
+.progress__thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background: var(--color-mode);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.progress:hover .progress__thumb {
+  opacity: 1;
+}
+
 @media (max-width: 768px) {
   .video {
     width: 100%;
