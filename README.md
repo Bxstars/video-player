@@ -4,11 +4,11 @@ A modern and customizable video player built with Angular, designed to provide a
 
 # Features
 
- Play / Pause controls
-- Volume control & mute
-- Light and Dark mode
-- Responsive layout
-- Customizable control bar
+- 🔥 Play / Pause controls
+- 🔥 Volume control & mute
+- 🔥 Light and Dark mode
+- 🔥 Responsive layout
+- 🔥 Customizable control bar
 
 # To-Do List
 
@@ -39,11 +39,11 @@ A modern and customizable video player built with Angular, designed to provide a
 
 🌞 Light Mode
 
-![Light Mode](https://github.com/Bxstars/Player/blob/master/player_light.png "Tela de Player - Mode Light")
+![Light Mode](https://github.com/Bxstars/video-player/blob/master/video-player-light-mode.png "Tela de Player - Mode Light")
 
 🌙 Dark Mode
 
-![Dark Mode](https://github.com/Bxstars/Player/blob/master/player_dark3.png "Tela de Player - Mode Dark")
+![Dark Mode](https://github.com/Bxstars/video-player/blob/master/video-player-dark-mode.png "Tela de Player - Mode Dark")
 
 
 # Getting Started
