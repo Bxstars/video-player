@@ -1,102 +1,113 @@
-<div class="card">
+<div class="player-container">
   <mat-card>
     <mat-card-content>
+      
+      <!-- Video -->
       <div class="video_wrapper">
         <video
+          #videoPlayer
           class="video"
-          id="playVideo"
           [class.video--big]="isBig"
-          preload="auto"
+          preload="metadata"
+          (click)="togglePlay()"
         >
           <source src="assets/video/video.mp4" type="video/mp4" />
         </video>
       </div>
-      <div class="controls__bar">
-        <span class="controls__bar__player">
-          <button
-            mat-icon-button
-            class="control__bar__player__voloff"
-            (click)="mute()"
-            title="Mute"
-          >
-            <mat-icon class="control__bar__player__icon"> volume_off </mat-icon>
-          </button>
-          <button
-            mat-icon-button
-            class="control__bar__player__replay10"
-            title="Retroceder"
-          >
-            <mat-icon class="control__bar__player__icon"> replay_10 </mat-icon>
-          </button>
-          @if (status === true || videoEnd === true) {
-            <button
-              mat-icon-button
-              class="control__bar__player__play"
-              (click)="playPause()"
-              title="Play"
-            >
-              <mat-icon class="control__bar__player__icon">
-                play_arrow
-              </mat-icon>
-            </button>
-          }
-          @if (status === false) {
-            <button
-              mat-icon-button
-              class="control__bar__player__pause"
-              (click)="playPause()"
-              title="Pause"
-            >
-              <mat-icon class="control__bar__player__icon"> pause </mat-icon>
-            </button>
-          }
-          <button
-            mat-icon-button
-            class="control__bar__player__forward10"
-            title="Avançar"
-          >
-            <mat-icon class=""> forward_10 </mat-icon>
-          </button>
-          <button
-            mat-icon-button
-            class="control__bar__player__fastforward"
-            (click)="forward()"
-            title="Speed 2X"
-          >
-            <mat-icon class="control__bar__player__icon">
-              fast_forward
-            </mat-icon>
-          </button>
 
-          <div class="mode">
-            <button
-              mat-icon-button
-              class="mode__lamp"
-              (click)="darkOrLight($event)"
-            >
-              @if (modeDark === false) {
-                <mat-icon class="mode__lamp--light" title="Light Mode">
-                  tips_and_updates
+      <!-- Overlay -->
+      <div class="controls-overlay">
+
+        <!-- Controls -->
+        <div class="controls__bar">
+          <span class="controls__bar__player">
+            <div class="controls__group controls__group--left">
+              <button
+                mat-icon-button
+                (click)="toggleTheme()"
+                [attr.arial-label]="isDarkMode ? 'Light Mode' : 'Dark Mode'"
+                [title]="isDarkMode ? 'Light Mode' : 'Dark Mode'"
+                class="mode__lamp"
+              >
+                <mat-icon class="mode__lamp__icon">
+                  {{ isDarkMode ? "lightbulb_outline" : "tips_and_updates" }}
                 </mat-icon>
-              }
-              @if (modeDark === true) {
-                <mat-icon class="mode__lamp--dark" title="Dark Mode">
-                  lightbulb_outline
+              </button>
+
+              <!-- Mute -->
+              <button
+                mat-icon-button
+                (click)="toggleMute()"
+                [attr.arial-label]="isMuted ? 'Unmute' : 'Mute'"
+                [title]="isMuted ? 'Unmute' : 'Mute'"
+              >
+                <mat-icon class="control__bar__player__icon">
+                  {{ isMuted ? "volume_off" : "volume_up" }}
                 </mat-icon>
-              }
-            </button>
-            <button
-              mat-icon-button
-              class="controls__bar__screen"
-              (click)="toggleSize()"
-              [title]="isBig ? 'Small' : 'Big'"
-            >
-              <mat-icon class="controls__bar__screen__icon">
-                {{ isBig ? "close_fullscreen" : "open_in_full" }}
-              </mat-icon>
-            </button>
-          </div>
-        </span>
+              </button>
+            </div>
+
+            <div class="controls__group controls__group--center">
+              <!-- Replay 10 -->
+              <button
+                mat-icon-button
+                (click)="rewind10()"
+                title="Retroceder 10 segundos"
+                aria-label="Retroceder 10 segundos"
+              >
+                <mat-icon>replay_10</mat-icon>
+              </button>
+
+              <!-- Play / Pause -->
+              <button
+                mat-icon-button
+                (click)="togglePlay()"
+                [attr.aria-label]="isPlaying ? 'Pause' : 'Play'"
+                [title]="isPlaying ? 'Pause' : 'Play'"
+                class="control--primary"
+              >
+                <mat-icon>
+                  {{ isPlaying ? "pause" : "play_arrow" }}
+                </mat-icon>
+              </button>
+
+              <!-- Forward 10 -->
+              <button
+                mat-icon-button
+                (click)="forward10()"
+                title="Avançar 10 segundos"
+                aria-label="Avançar 10 segundos"
+              >
+                <mat-icon>forward_10</mat-icon>
+              </button>
+            </div>
+
+            <div class="controls__group controls__group--right">
+              <!-- Speed-->
+              <button
+                mat-icon-button
+                (click)="forward()"
+                title="Velocidade 2x"
+                aria-label="Velocidade 2x"
+              >
+                <mat-icon>fast_forward</mat-icon>
+              </button>
+
+              <!-- Fullscreen -->
+              <button
+                mat-icon-button
+                (click)="toggleSize()"
+                [attr.arial-label]="isBig ? 'Small' : 'Big'"
+                [title]="isBig ? 'Small' : 'Big'"
+                class="controls__bar__screen"
+              >
+                <mat-icon class="controls__bar__screen__icon">
+                  {{ isBig ? "close_fullscreen" : "open_in_full" }}
+                </mat-icon>
+              </button>
+            </div>
+          </span>
+        </div>
       </div>
     </mat-card-content>
   </mat-card>

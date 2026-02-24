@@ -22,7 +22,7 @@ body {
   --color-player: #000000;
   --color-text: #000;
   --color-mode: #7157bd;
-  --color-bg-card: #ffffffa4;
+  --color-bg-card: #ffffff8a;
 }
 
 .dark-mode:root {
@@ -35,4 +35,3 @@ body {
 .mat-card-header .mat-card-title {
   font-size: 24px;
 }
-
