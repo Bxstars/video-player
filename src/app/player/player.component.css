@@ -1,8 +1,5 @@
 mat-card {
-  display: flex;
-  padding: 54px;
-  background-color: var(--color-bg-card);
-  border-radius: 8px;
+  background-color: transparent !important;
 }
 
 .mat-mdc-card-content {
@@ -16,19 +13,24 @@ mat-card {
   overflow: hidden;
 }
 
-.video-wrapper {
-  position: relative;
+.video_wrapper {
   display: flex;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  width: 100%;
+  transition: all 0.4s ease;
 }
 
 .video {
   width: 640px;
   max-width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: 12px;
+  border-radius: 14px;
   background-color: var(--color-bg);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
 }
 
 .video:hover {
@@ -39,76 +41,82 @@ mat-card {
   width: 1000px;
 }
 
+.controls-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+
+  padding: 12px;
+  box-sizing: border-box;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.0)
+  );
+}
+
 .controls__bar {
-  margin-top: 16px;
   display: flex;
-  justify-content: center;
+  margin-top: 12px;
+
 }
 
 .controls__bar__player {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 4px 14px;
-  border-radius: 12px;
-  background-color: var(--color-bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.068);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(10px);
+  width: 100%;
 }
 
 .controls__bar__player button {
-  background: var(--color-bg);
+  background: transparent !important;
+  box-shadow: none !important;
   color: var(--color-player);
-  border-radius: 12px;
+  border-radius: 50%;
   transition: all 0.2s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .controls__bar__player button:hover {
-  background: var(--color-mode);
   color: #fff;
-  transform: translateY(-2px);
+  transform: scale(1.15);
+  display: flex;
+  justify-items: center;
 }
 
 .controls__bar__player button:active {
   transform: scale(0.95);
 }
 
-.control--primary {
-  background: var(--color-mode) !important;
-  color: #fff !important;
-}
-
-.control--primary:hover {
-  filter: brightness(1.1);
-}
-
 .control__bar__player__icon,
 .controls__bar__screen__icon,
 .mode__lamp__icon {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .controls__group {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-.controls__group--center {
-  gap: 20px;
-}
-
-.controls__group--right {
-  display: flex;
-  align-items: center;
-  margin-left: 8px;
+  padding: 0 8px;
+  margin: 0 5px;
 }
 
 .controls__group--left {
   display: flex;
   align-items: center;
-  margin-right: 8px;
+  justify-items: flex-start;
+}
+
+.controls__group--right {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+  justify-items: flex-end;
 }
 
 .mode__lamp {
@@ -118,8 +126,9 @@ mat-card {
 .progress-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
-  margin-top: 16px;
+  margin: 16px 20px 0 20px;
 }
 
 .time {
@@ -147,10 +156,11 @@ mat-card {
 }
 
 .progress__filled {
-  height: 100%;
-  background: var(--color-mode);
+  height: 4px;
+  background: var(--color-primary);
   border-radius: 999px;
-  transition: width 0.15s linear;
+  border: 0.8px solid #1818182f;
+  transition: width 0.2s linear;
 }
 
 .progress__thumb {
@@ -159,14 +169,14 @@ mat-card {
   transform: translate(-50%, -50%);
   width: 14px;
   height: 14px;
-  background: var(--color-mode);
+  background: var(--color-primary);
   border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: left 0.1s linear, transform 0.2s ease;
+  border: 0.8px solid #1818182f;
 }
 
 .progress:hover .progress__thumb {
-  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.2);
 }
 
 @media (max-width: 768px) {
@@ -182,5 +192,9 @@ mat-card {
   .controls__bar__player {
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  .controls__bar__player button:hover {
+    transform: translateY(-1px);
   }
 }

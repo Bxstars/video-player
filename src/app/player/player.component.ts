@@ -48,13 +48,6 @@ export class PlayerComponent implements AfterViewInit {
   togglePlay() {
     const video = this.videoRef.nativeElement;
 
-    console.log('togglePlay called. Current state:', {
-      paused: video.paused,
-      currentTime: video.currentTime,
-      isPlaying: this.isPlaying,
-      isEnded: this.isEnded,
-    });
-
     if (video.paused) {
       video.play();
       this.isPlaying = true;
