@@ -60,6 +60,7 @@
                 <button
                   matMiniFab
                   (click)="togglePlay()"
+                  [class.active]="isPlaying"
                   [attr.aria-label]="isPlaying ? 'Pause' : 'Play'"
                   [title]="isPlaying ? 'Pause' : 'Play'"
                 >
@@ -86,6 +87,7 @@
                 <button
                   matMiniFab
                   (click)="toggleMute()"
+                  [class.active]="isMuted"
                   [attr.arial-label]="isMuted ? 'Unmute' : 'Mute'"
                   [title]="isMuted ? 'Unmute' : 'Mute'"
                 >
@@ -109,6 +111,7 @@
                 <button
                   matMiniFab
                   (click)="toggleSize()"
+                  [class.active]="isBig"
                   [attr.arial-label]="isBig ? 'Small' : 'Big'"
                   [title]="isBig ? 'Small' : 'Big'"
                   class="controls__bar__screen"
