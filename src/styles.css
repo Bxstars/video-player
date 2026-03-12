@@ -20,11 +20,10 @@ body {
 }
 
 :root {
+  --color-primary: #5622b2;
   --color-player: #fdfdfd;
   --color-text: #fff;
-  --color-mode: #54428a;
   --color-bg-card: rgba(0, 0, 0, 0.363);
-  --color-primary: #57447c;
 }
 
 .mat-card-header .mat-card-title {
