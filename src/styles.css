@@ -7,7 +7,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #161424 no-repeat
+  background: linear-gradient(180deg, #0f0f12 0%, #1a1a2e 100%);
+  background-attachment: fixed;
 }
 
 * {
@@ -19,16 +20,9 @@ body {
 }
 
 :root {
-  --color-player: #000000;
-  --color-text: #000;
-  --color-mode: #7157bd;
-  --color-bg-card: #ffffff8a;
-}
-
-.dark-mode:root {
-  --color-player: #fdfdfdb4;
+  --color-primary: #5622b2;
+  --color-player: #fdfdfd;
   --color-text: #fff;
-  --color-mode: #54428a;
   --color-bg-card: rgba(0, 0, 0, 0.363);
 }
 
