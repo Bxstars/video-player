@@ -43,6 +43,19 @@ mat-card {
   width: 1000px;
 }
 
+.video_wrapper:fullscreen {
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video_wrapper:fullscreen .video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .controls-overlay {
   position: absolute;
   bottom: 0;
@@ -67,6 +80,10 @@ mat-card {
   width: 100%;
 }
 
+mat-icon {
+  padding: 8px 8px 0 8px;
+}
+
 .controls__bar__player button {
   background: transparent !important;
   box-shadow: none !important;
@@ -77,30 +94,24 @@ mat-card {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  box-shadow: 0 0 8px rgba(68, 35, 124, 0.7);
 }
 
 .controls__bar__player button:hover {
-  color: var(--color-primary);
-  transform: scale(1.3);
+  transform: scale(1.2);
   display: flex;
   justify-items: center;
 }
 
 .controls__bar__player button.active {
-  background-color: rgb(71, 71, 71);
   color: var(--color-primary);
-  transform: scale(1.15);
-  transition: all 0.2s ease;
-}
-
-.controls__bar__player button:active {
-  color: var(--color-player);
 }
 
 .control__bar__player__icon,
 .controls__bar__screen__icon,
 .mode__lamp__icon {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .controls__group {
@@ -114,6 +125,9 @@ mat-card {
   display: flex;
   align-items: center;
   justify-items: flex-start;
+  mix-blend-mode: difference;
+  background-color: rgba(102, 102, 102, 0.158);
+  border-radius: 8px;
 }
 
 .controls__group--right {
@@ -121,6 +135,9 @@ mat-card {
   margin-left: auto;
   align-items: center;
   justify-items: flex-end;
+  mix-blend-mode: difference;
+  background-color: rgba(102, 102, 102, 0.158);
+  border-radius: 8px;
 }
 
 .mode__lamp {
@@ -149,7 +166,7 @@ mat-card {
   position: relative;
   flex: 1;
   height: 6px;
-  background: rgba(255, 255, 255, 0.322);
+  background: rgba(255, 255, 255, 0.144);
   border-radius: 999px;
   cursor: pointer;
   transition: height 0.2s ease;

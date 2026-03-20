@@ -2,11 +2,12 @@
   <mat-card>
     <mat-card-content>
       <!-- Video -->
-      <div class="video_wrapper">
+      <div #videoWrapper class="video_wrapper">
         <video
           #videoPlayer
           class="video"
           [class.video--big]="isBig"
+          [class.video--fullscreen]="isFullscreen"
           preload="metadata"
           (click)="togglePlay()"
         >
@@ -46,7 +47,6 @@
               <div class="controls__group controls__group--left">
                 <!-- Replay 10 -->
                 <button
-                  matMiniFab
                   (click)="rewind10()"
                   title="Retroceder 10 segundos"
                   aria-label="Retroceder 10 segundos"
@@ -58,7 +58,6 @@
 
                 <!-- Play / Pause -->
                 <button
-                  matMiniFab
                   (click)="togglePlay()"
                   [class.active]="isPlaying"
                   [attr.aria-label]="isPlaying ? 'Pause' : 'Play'"
@@ -71,7 +70,6 @@
 
                 <!-- Forward 10 -->
                 <button
-                  matMiniFab
                   (click)="forward10()"
                   title="Avançar 10 segundos"
                   aria-label="Avançar 10 segundos"
@@ -85,7 +83,6 @@
               <div class="controls__group controls__group--right">
                 <!-- Mute -->
                 <button
-                  matMiniFab
                   (click)="toggleMute()"
                   [class.active]="isMuted"
                   [attr.arial-label]="isMuted ? 'Unmute' : 'Mute'"
@@ -97,7 +94,6 @@
                 </button>
                 <!-- Speed-->
                 <button
-                  matMiniFab
                   (click)="forward()"
                   title="Velocidade 2x"
                   aria-label="Velocidade 2x"
@@ -109,7 +105,6 @@
 
                 <!-- Fullscreen -->
                 <button
-                  matMiniFab
                   (click)="toggleSize()"
                   [class.active]="isBig"
                   [attr.arial-label]="isBig ? 'Small' : 'Big'"
@@ -120,6 +115,17 @@
                     {{ isBig ? "close_fullscreen" : "open_in_full" }}
                   </mat-icon>
                 </button>
+
+                <!-- Fullscreen -->
+                <button
+                  (click)="toggleFullscreen()"
+                  class="controls__bar__screen"
+                >
+                  <mat-icon class="controls__bar__screen__icon">
+                    {{ isFullscreen ? 'fullscreen_exit' : 'fullscreen' }}
+                  </mat-icon>
+                </button>
+
               </div>
             </div>
           </div>
