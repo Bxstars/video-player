@@ -92,16 +92,27 @@
                     {{ isMuted ? "volume_off" : "volume_up" }}
                   </mat-icon>
                 </button>
+
                 <!-- Speed-->
                 <button
-                  (click)="forward()"
-                  title="Velocidade 2x"
-                  aria-label="Velocidade 2x"
+                  [matMenuTriggerFor]="menuSpeed"
+                  title="Velocidade"
+                  aria-label="Velocidade"
                 >
-                  <mat-icon class="control__bar__player__icon"
-                    >fast_forward</mat-icon
-                  >
+                  <mat-icon class="control__bar__player__icon">speed</mat-icon>
                 </button>
+
+                <mat-menu #menuSpeed="matMenu" yPosition="above" class="speed-menu">
+                  @for (speed of speeds; track speed) {
+                    <button
+                      mat-menu-item
+                      (click)="setSpeed(speed)"
+                      [class.active]="currentSpeed === speed"
+                    >
+                    {{ speed }}x
+                    </button>
+                  }
+                </mat-menu>
 
                 <!-- Fullscreen -->
                 <button
@@ -122,10 +133,9 @@
                   class="controls__bar__screen"
                 >
                   <mat-icon class="controls__bar__screen__icon">
-                    {{ isFullscreen ? 'fullscreen_exit' : 'fullscreen' }}
+                    {{ isFullscreen ? "fullscreen_exit" : "fullscreen" }}
                   </mat-icon>
                 </button>
-
               </div>
             </div>
           </div>
