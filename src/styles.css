@@ -20,7 +20,7 @@ body {
 }
 
 :root {
-  --color-primary: #5622b2;
+  --color-primary: #603ab8;
   --color-player: #fdfdfd;
   --color-text: #fff;
   --color-bg-card: rgba(0, 0, 0, 0.363);
@@ -28,4 +28,43 @@ body {
 
 .mat-card-header .mat-card-title {
   font-size: 24px;
+}
+
+.speed-menu {
+  background:  rgba(37, 37, 37, 0.158) !important;
+  border-radius: 12px !important;
+  padding: 0 6px !important;
+}
+
+.cdk-overlay-pane .speed-menu {
+  transform: translateY(-30px) !important;
+}
+
+.mat-mdc-menu-panel {
+  min-width: 75px !important;
+}
+
+.speed-menu .mat-mdc-menu-item {
+  min-height: 28px !important;
+  height: 28px !important;
+  line-height: 28px !important;
+
+  font-size: 12px !important;
+  padding: 0 12px !important;
+  margin: 2px 0 !important;
+  color: #ffffff;
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.speed-menu .mat-mdc-menu-item:hover {
+  background: var(--color-primary) !important;
+}
+
+.speed-menu .active {
+  background: var(--color-primary) !important;
+  font-weight: bold !important;
 }

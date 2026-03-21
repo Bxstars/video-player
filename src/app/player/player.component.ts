@@ -8,11 +8,13 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class PlayerComponent implements AfterViewInit {
   @ViewChild('videoPlayer') videoRef!: ElementRef<HTMLVideoElement>;
+  @ViewChild('videoWrapper') wrapperRef!: ElementRef<HTMLDivElement>;
 
   isPlaying: boolean = false;
   isMuted: boolean = false;
   isDarkMode: boolean = false;
   isBig: boolean = false;
+  isFullscreen: boolean = false;
   isLoading: boolean = true;
   isEnded: boolean = false;
 
@@ -21,8 +23,15 @@ export class PlayerComponent implements AfterViewInit {
   progress: number = 0;
   isDragging: boolean = false;
 
+  currentSpeed = 1;
+  speeds = [1, 1.5, 2];
+
   ngAfterViewInit(): void {
     const video = this.videoRef.nativeElement;
+
+    document.addEventListener('fullscreenchange', () => {
+      this.isFullscreen = !!document.fullscreenElement;
+    });
 
     video.onloadeddata = () => {
       this.isLoading = false;
@@ -75,9 +84,9 @@ export class PlayerComponent implements AfterViewInit {
     );
   }
 
-  forward() {
-    const video = this.videoRef.nativeElement;
-    video.playbackRate = video.playbackRate === 1 ? 2 : 1;
+  setSpeed(speed: number) {
+    this.currentSpeed = speed;
+    this.videoRef.nativeElement.playbackRate = speed;
   }
 
   toggleMute() {
@@ -88,6 +97,20 @@ export class PlayerComponent implements AfterViewInit {
 
   toggleSize() {
     this.isBig = !this.isBig;
+  }
+
+  toggleFullscreen() {
+    const wrapper = this.wrapperRef.nativeElement;
+
+    if (!document.fullscreenElement) {
+      wrapper.requestFullscreen().then(() => {
+        this.isFullscreen = true;
+      });
+    } else {
+      document.exitFullscreen().then(() => {
+        this.isFullscreen = false;
+      });
+    }
   }
 
   toggleTheme() {
