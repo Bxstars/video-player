@@ -99,7 +99,7 @@ mat-icon {
 }
 
 .controls__bar__player button:hover {
-  transform: scale(1.2);
+  transform: scale(1.4);
   display: flex;
   justify-items: center;
 }
@@ -126,7 +126,7 @@ mat-icon {
   align-items: center;
   justify-items: flex-start;
   mix-blend-mode: difference;
-  background-color: rgba(102, 102, 102, 0.158);
+  background:  rgba(37, 37, 37, 0.158);
   border-radius: 8px;
 }
 
@@ -136,7 +136,7 @@ mat-icon {
   align-items: center;
   justify-items: flex-end;
   mix-blend-mode: difference;
-  background-color: rgba(102, 102, 102, 0.158);
+  background:  rgba(37, 37, 37, 0.158);
   border-radius: 8px;
 }
 

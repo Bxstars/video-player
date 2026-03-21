@@ -23,6 +23,9 @@ export class PlayerComponent implements AfterViewInit {
   progress: number = 0;
   isDragging: boolean = false;
 
+  currentSpeed = 1;
+  speeds = [1, 1.5, 2];
+
   ngAfterViewInit(): void {
     const video = this.videoRef.nativeElement;
 
@@ -81,9 +84,9 @@ export class PlayerComponent implements AfterViewInit {
     );
   }
 
-  forward() {
-    const video = this.videoRef.nativeElement;
-    video.playbackRate = video.playbackRate === 1 ? 2 : 1;
+  setSpeed(speed: number) {
+    this.currentSpeed = speed;
+    this.videoRef.nativeElement.playbackRate = speed;
   }
 
   toggleMute() {
