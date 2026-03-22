@@ -37,13 +37,13 @@ A modern and customizable video player built with Angular, designed to provide a
 
 # Preview
 
-🌞 Light Mode
+Small Mode
 
-![Light Mode](https://github.com/Bxstars/video-player/blob/master/video-player-light-mode.png "Tela de Player - Mode Light")
+![Small Mode](https://github.com/Bxstars/video-player/blob/master/src/assets/small_screen.png "Tela de Player - Small")
 
-🌙 Dark Mode
+Medium Mode
 
-![Dark Mode](https://github.com/Bxstars/video-player/blob/master/video-player-dark-mode.png "Tela de Player - Mode Dark")
+![Medium Mode](https://github.com/Bxstars/video-player/blob/master/src/assets/medium_screen.png "Tela de Player - Medium")
 
 
 # Getting Started
@@ -76,6 +76,3 @@ http://localhost:4200
 | Technology | Version | Documentation                              |
 | ---------- | ------- | ------------------------------------------ |
 | Angular    | 21.1.4  | [https://angular.io/](https://angular.io/) |
-
-
-
