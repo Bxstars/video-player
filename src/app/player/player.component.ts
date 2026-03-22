@@ -31,7 +31,9 @@ export class PlayerComponent implements AfterViewInit {
 
     document.addEventListener('fullscreenchange', () => {
       this.isFullscreen = !!document.fullscreenElement;
+      this.videoRef.nativeElement.playbackRate = this.currentSpeed;
     });
+
 
     video.onloadeddata = () => {
       this.isLoading = false;
@@ -44,6 +46,7 @@ export class PlayerComponent implements AfterViewInit {
 
     video.onloadedmetadata = () => {
       this.duration = video.duration;
+      video.playbackRate = this.currentSpeed;
     };
 
     video.ontimeupdate = () => {
