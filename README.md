@@ -2,6 +2,8 @@
 
 A modern and customizable video player built with Angular, designed to provide a smooth user experience with flexible and intuitive controls.
 
+<p align="left"> <img src="https://img.shields.io/badge/Angular-21-red?logo=angular" /> <img src="https://img.shields.io/badge/TypeScript-5-blue?logo=typescript" /> <img src="https://img.shields.io/badge/RxJS-7-purple?logo=reactivex" /> <img src="https://img.shields.io/badge/SCSS-Styling-pink?logo=sass" /> <img src="https://img.shields.io/badge/PWA-Ready-green?logo=googlechrome" /> <img src="https://img.shields.io/badge/Status-In%20Progress-yellow" /> </p>
+
 # Features
 
 - 🔥 Play / Pause controls
@@ -32,8 +34,6 @@ A modern and customizable video player built with Angular, designed to provide a
  - Improve responsiveness across breakpoints
  - Add smooth animations and transitions
  - Improve accessibility (ARIA labels & keyboard navigation)
-
-
 
 # Preview
 
